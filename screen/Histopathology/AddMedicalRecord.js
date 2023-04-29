@@ -12,12 +12,25 @@ import {
 import CustomForm from "../../components/CustomForm";
 import AddMedicalRecordCard from "./AddMedicalRecordCard";
 import Colors from "../../configs/Colors";
+import { useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
 
 
 
-const MedicalRecord = () => {
+const MedicalRecord = (props) => {
+    console.log("<<<<<<<<<<<<<<$$$$$$$4", props?.route?.params)
     const [Show, setShow] = useState()
-
+    const [DataCase, setDataCase] = useState("")
+    const [idCase, setIdCase] = useState("")
+    const navigation = useNavigation()
+    const CaseType = () => {
+        navigation.navigate("ChooseCaseType",{idCase:idCase,data:DataCase})
+    }
+    useEffect(() => {
+        setIdCase(props?.route?.params?.ID ?? "")
+        setDataCase(props?.route?.params?.Names ?? "")
+    }, [props])
+    // console.log(">>>>>>>>>>>>>>&*&*", idCase)
     return (
         <>
             {Show == true ? <>
@@ -36,9 +49,17 @@ const MedicalRecord = () => {
                                         <Text style={styles.subtitle}>
                                             Nanday Conure
                                         </Text>
-                                        <Text style={styles.subtitle}>
-                                            A000093
-                                        </Text>
+                                        <View style={{ display: "flex", flexDirection: "row" }}>
+                                            <Text style={styles.subtitle}>
+                                                A000093
+                                            </Text>
+                                            <Text style={styles.MBox}>
+                                                M
+                                            </Text>
+                                            <Text style={styles.BBox}>
+                                                B
+                                            </Text>
+                                        </View>
                                         <Text style={styles.subtitle}>
                                             Enclosure Name,Section Name
                                         </Text>
@@ -49,26 +70,7 @@ const MedicalRecord = () => {
                             />
                         </View>
                     </View>
-                    <View>
-                        <AddMedicalRecordCard
-                            children={
-                                <>
-                                    <View style={{ display: "flex", flexDirection: "row" }}>
-                                        <Text style={styles.title}>Case Type</Text>
-                                    </View>
-                                    <Text style={styles.subtitle}>
-                                        Quarantine
-                                    </Text>
 
-                                </>
-                            }
-                            image={true}
-                            imagePath={require('../../assets/Medical/Medical/ecg_heart.png')}
-                            backgroundColor={"#FA6140"}
-                            rightIcon={true}
-
-                        />
-                    </View>
                     <View>
                         <AddMedicalRecordCard
                             children={
@@ -76,7 +78,7 @@ const MedicalRecord = () => {
                                     <View style={{ display: "flex", flexDirection: "row" }}>
                                         <Text style={styles.title}>Complaints</Text>
                                     </View>
-                                    <View style={{ display: "flex", flexDirection: "row" ,margin:wp(1.5)}}>
+                                    <View style={{ display: "flex", flexDirection: "row", margin: wp(1.5) }}>
                                         <Text style={styles.painbox}>
                                             Pain
                                         </Text>
@@ -93,7 +95,6 @@ const MedicalRecord = () => {
                             image={true}
                             imagePath={require('../../assets/Medical/Medical/health_metrics.png')}
                             rightIcon={true}
-
                         />
                     </View>
                     <View>
@@ -103,14 +104,14 @@ const MedicalRecord = () => {
                                     <View style={{ display: "flex", flexDirection: "row" }}>
                                         <Text style={styles.title}>Daignosis</Text>
                                     </View>
-                                    <View style={{ display: "flex", flexDirection: "row" ,margin:wp(1.5)}}>
-                                        <Text style={[styles.painbox,{backgroundColor:"#FFD3D3"}]}>
+                                    <View style={{ display: "flex", flexDirection: "row", margin: wp(1.5) }}>
+                                        <Text style={[styles.painbox, { backgroundColor: "#FFD3D3" }]}>
                                             Covid
                                         </Text>
-                                        <Text style={[styles.RestLessness,{backgroundColor:"#52F990"}]}>
+                                        <Text style={[styles.RestLessness, { backgroundColor: "#52F990" }]}>
                                             Fatigue
                                         </Text>
-                                        <Text style={[styles.Bleeding, {backgroundColor:"#FFBDA8"}]}>
+                                        <Text style={[styles.Bleeding, { backgroundColor: "#FFBDA8" }]}>
                                             Infection
                                         </Text>
                                     </View>
@@ -131,7 +132,7 @@ const MedicalRecord = () => {
                                     <View style={{ display: "flex", flexDirection: "row" }}>
                                         <Text style={styles.title}>Lab Test Request</Text>
                                     </View>
-                                    <View style={{ display: "flex", flexDirection: "row" ,margin:wp(1.5)}}>
+                                    <View style={{ display: "flex", flexDirection: "row", margin: wp(1.5) }}>
                                         <Text style={styles.painbox}>
                                             RBS
                                         </Text>
@@ -155,7 +156,7 @@ const MedicalRecord = () => {
                                     <View style={{ display: "flex", flexDirection: "row" }}>
                                         <Text style={styles.title}>Prescription</Text>
                                     </View>
-                                    <View style={{ display: "flex", flexDirection: "row" ,margin:wp(1.5)}}>
+                                    <View style={{ display: "flex", flexDirection: "row", margin: wp(1.5) }}>
                                         <Text style={styles.painbox}>
                                             Pantocid
                                         </Text>
@@ -163,7 +164,7 @@ const MedicalRecord = () => {
                                             Omnacortil 1.5 mg
                                         </Text>
                                     </View>
-                                    <View style={{ display: "flex", flexDirection: "row" ,margin:wp(1.5)}}>
+                                    <View style={{ display: "flex", flexDirection: "row", margin: wp(1.5) }}>
                                         <Text style={styles.painbox}>
                                             Perdmet 1% Eye Drop
                                         </Text>
@@ -186,8 +187,8 @@ const MedicalRecord = () => {
                                         <Text style={styles.title}>Follow Up Date</Text>
                                     </View>
                                     <Text style={styles.subtitle}>
-                                            28 April 2023
-                                        </Text>
+                                        28 April 2023
+                                    </Text>
                                 </>
                             }
                             backgroundColor={"#37BD69"}
@@ -199,7 +200,7 @@ const MedicalRecord = () => {
                     </View>
                     <View>
                         <AddMedicalRecordCard
-                            
+
                             children={
                                 <>
                                     <View style={{ display: "flex", flexDirection: "row" }}>
@@ -207,7 +208,7 @@ const MedicalRecord = () => {
                                     </View>
                                     <Text style={styles.subtitle}>
                                         ------
-                                        </Text>
+                                    </Text>
                                 </>
                             }
                             backgroundColor={"#37BD69"}
@@ -242,7 +243,27 @@ const MedicalRecord = () => {
 
                     />
                 </View>
-                <View>
+                {DataCase != "" ? <View>
+                    <AddMedicalRecordCard
+                        children={
+                            <>
+                                <View style={{ display: "flex", flexDirection: "row" }}>
+                                    <Text style={styles.title}>Case Type</Text>
+                                </View>
+                                <Text style={styles.subtitle}>
+                                    {DataCase}
+                                </Text>
+
+                            </>
+                        }
+                        image={true}
+                        onPress={() => CaseType()}
+                        imagePath={require('../../assets/Medical/Medical/ecg_heart.png')}
+                        backgroundColor={"#FA6140"}
+                        rightIcon={true}
+
+                    />
+                </View> : <View>
                     <AddMedicalRecordCard
                         children={
                             <>
@@ -252,11 +273,13 @@ const MedicalRecord = () => {
                             </>
                         }
                         backgroundColor={"#D9D9D9"}
+                        onPress={() => CaseType()}
                         image={true}
                         imagePath={require('../../assets/Medical/ecg_heart.png')}
                         rightIcon={true}
                     />
-                </View>
+                </View>}
+
                 <View>
                     <AddMedicalRecordCard
 
@@ -399,45 +422,62 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontStyle: "italic",
     },
-    painbox:{
-        borderWidth:0.5,
-        padding:wp(2),
-        paddingTop:wp(0.5),
-        height:hp(3.8),
-        borderRadius:2,
-        borderColor:"grey",
+    painbox: {
+        borderWidth: 0.5,
+        padding: wp(2),
+        paddingTop: wp(0.5),
+        height: hp(3.8),
+        borderRadius: 2,
+        borderColor: "grey",
         fontSize: wp(4.5),
         fontWeight: "600",
         fontStyle: "italic",
         color: Colors.subtitle,
-        backgroundColor:"#AFEFEB"
+        backgroundColor: "#AFEFEB"
     },
-    RestLessness:{
-        borderWidth:0.5,
-        padding:wp(1),
-        paddingTop:wp(0.5),
-        height:hp(3.8),
-        marginLeft:wp(1),
-        borderRadius:2,
-        borderColor:"grey",
+    RestLessness: {
+        borderWidth: 0.5,
+        padding: wp(1),
+        paddingTop: wp(0.5),
+        height: hp(3.8),
+        marginLeft: wp(1),
+        borderRadius: 2,
+        borderColor: "grey",
         fontSize: wp(4.5),
         fontWeight: "600",
         fontStyle: "italic",
         color: Colors.subtitle,
-        backgroundColor:"#AFEFEB"
+        backgroundColor: "#AFEFEB"
     },
-    Bleeding:{
-        borderWidth:0.5,
-        padding:wp(1),
-        paddingTop:wp(0.5),
-        height:hp(3.8),
-        marginLeft:wp(1),
-        borderRadius:2,
-        borderColor:"grey",
+    Bleeding: {
+        borderWidth: 0.5,
+        padding: wp(1),
+        paddingTop: wp(0.5),
+        height: hp(3.8),
+        marginLeft: wp(1),
+        borderRadius: 2,
+        borderColor: "grey",
         fontSize: wp(4.5),
         fontWeight: "600",
         fontStyle: "italic",
         color: Colors.subtitle,
-        backgroundColor:"#AFEFEB"
+        backgroundColor: "#AFEFEB"
+    },
+    MBox: {
+        //  borderWidth:0.5,
+        marginLeft: wp(1),
+        paddingTop: wp(0.3),
+        padding: wp(1),
+        height: hp(3),
+        backgroundColor: "#DAE7DF"
+
+    },
+    BBox: {
+        //  borderWidth:0.5,
+        marginLeft: wp(1),
+        paddingTop: wp(0.3),
+        padding: wp(1),
+        height: hp(2.9),
+        backgroundColor: "#00D6C9"
     }
 })

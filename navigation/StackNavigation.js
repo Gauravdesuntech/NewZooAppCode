@@ -99,7 +99,7 @@ import ComonNameDetails from "../screen/Insights/ComonNameDetails";
 import HistopathologyList from "../screen/Histopathology/HistopathologyList";
 // import Complaints from "../screen/Histopathology/Complaints";
 import MedicalRecord from "../screen/Histopathology/AddMedicalRecord";
-import AddRecord from "../screen/Histopathology/AddRecord";
+import ChooseCaseType from "../screen/Histopathology/ChooseCaseType";
 
 
 const Stack = createStackNavigator();
@@ -228,7 +228,7 @@ const MainStackNavigation = () => {
       <Stack.Screen name="HistopathologyList" component={HistopathologyList} />
       {/* <Stack.Screen name="Complaints" component={Complaints} /> */}
       <Stack.Screen name="MedicalRecord" component={MedicalRecord} />
-      <Stack.Screen name="AddRecord" component={AddRecord} />
+      <Stack.Screen name="ChooseCaseType" component={ChooseCaseType} />
     </Stack.Navigator>
   );
 };
